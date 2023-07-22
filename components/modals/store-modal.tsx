@@ -40,8 +40,9 @@ export const StoreModal = () => {
                 body: JSON.stringify(values),
             });
             const result = await response.json();
-            toast.success("Store created");
-
+            console.log(result);
+            
+            window.location.assign(`/${result.id}`);
             
         } catch (error) {
             toast.error("Something went wrong")

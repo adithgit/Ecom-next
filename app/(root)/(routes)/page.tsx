@@ -11,11 +11,7 @@ function SetupPage() {
     if(!isOpen) onOpen();
   }, [onOpen, isOpen]);
 
-  return (
-    <div className='p-4'>
-      THis is the root
-    </div>
-  )
+  return null;
 }
 
 export default SetupPage;
