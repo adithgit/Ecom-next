@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import Heading from "@/components/ui/heading"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { useOrigin } from "@/hooks/user-origin"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Store } from "@prisma/client"
 import { Trash } from "lucide-react"
@@ -29,6 +30,7 @@ type SettingsFormValues = z.infer<typeof formSchema>;
 export default function SettingsForm({ initialData }: SettingsFormProps) {
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
