@@ -1,7 +1,6 @@
 'use client'
 
 import { AlertModal } from "@/components/modals/alert-modal"
-import ApiAlert from "@/components/ui/api-alert"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Heading from "@/components/ui/heading"
@@ -32,7 +31,6 @@ interface BillboardFormProps {
 export default function BillboardForm({ initialData }:BillboardFormProps) {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -73,7 +71,7 @@ export default function BillboardForm({ initialData }:BillboardFormProps) {
     const result = await response.json();
     console.log(result);
     router.refresh();
-    router.push(`${params.storeId}/billboards`)
+    router.push(`/${params.storeId}/billboards`)
     toast.success(toastMessage);
 
     } catch (error) {
