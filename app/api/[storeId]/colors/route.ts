@@ -35,7 +35,7 @@ export async function POST(req: Request,
             return new NextResponse("Unauthorized", { status: 403});
         }
 
-        const size = await prismadb.size.create({
+        const size = await prismadb.color.create({
             data:{
                 name,
                 value,
@@ -46,7 +46,7 @@ export async function POST(req: Request,
         return NextResponse.json(size);
 
     } catch (error) {
-        console.log('[SIZES_POST]', error);
+        console.log('[COLORS_POST]', error);
         return new NextResponse("Internal error", { status: 500})
     }
 }
@@ -61,16 +61,16 @@ export async function GET(req: Request,
         }
 
 
-        const size = await prismadb.size.findMany({
+        const color = await prismadb.color.findMany({
             where: {
                 storeId: params.storeId
             }
         });
 
-        return NextResponse.json(size);
+        return NextResponse.json(color);
 
     } catch (error) {
-        console.log('[SIZES_GET]', error);
+        console.log('[COLORS_GET]', error);
         return new NextResponse("Internal error", { status: 500})
     }
 }
