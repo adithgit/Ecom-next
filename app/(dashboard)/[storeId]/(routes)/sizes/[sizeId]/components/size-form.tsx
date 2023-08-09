@@ -51,6 +51,9 @@ export default function SizeForm({ initialData }:SizeFormProps) {
     try {
       setLoading(true);
 
+      console.log(data);
+      
+
       let url = `/api/${params.storeId}/sizes`;
       let methodType = "POST";
 
@@ -74,6 +77,7 @@ export default function SizeForm({ initialData }:SizeFormProps) {
     toast.success(toastMessage);
 
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong.");
     } finally{
       setLoading(false);

@@ -1,7 +1,7 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { BillboardColumn } from "./columns"
+import { SizeColumn } from "./columns"
 import { Button } from "@/components/ui/button"
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react"
 import toast from "react-hot-toast"
@@ -10,7 +10,7 @@ import { useState } from "react"
 import { AlertModal } from "@/components/modals/alert-modal"
 
 interface CellActionProps {
-    data: BillboardColumn
+    data: SizeColumn
 }
 
 export const CellAction = ({
@@ -22,15 +22,15 @@ export const CellAction = ({
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
 
-    const onCopy = (billboardId: string) => {
-        navigator.clipboard.writeText(billboardId);
-        toast.success("Billboard Id copied to the clipboard");
+    const onCopy = (sizeId: string) => {
+        navigator.clipboard.writeText(sizeId);
+        toast.success("Size Id copied to the clipboard");
     }
 
     const onDelete = async () => {
         try {
           setLoading(true);
-          const response = await fetch(`/api/${params.storeId}/billboards/${data.id}`,{
+          const response = await fetch(`/api/${params.storeId}/sizes/${data.id}`,{
             method: "DELETE",
             headers:{
                 "Content-Type": "application/json",
@@ -39,9 +39,9 @@ export const CellAction = ({
         const result = await response.json();
         console.log(result);
         router.refresh();
-        toast.success("Billboard deleted.")
+        toast.success("Size deleted.")
         } catch (error) {
-          toast.error("Make sure you removed all categories first.");
+          toast.error("Make sure you removed all products using the size first.");
         } finally{
           setLoading(false);
           setOpen(false);
@@ -70,7 +70,7 @@ export const CellAction = ({
                     <Copy className="m-2 h-4 w-4" />
                     Copy Id
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}>
+                <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
                     <Edit className="m-2 h-4 w-4" />
                     Update
                 </DropdownMenuItem>
